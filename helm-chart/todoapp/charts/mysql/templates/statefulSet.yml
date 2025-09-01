@@ -21,17 +21,17 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secrets
+              name: {{ .Chart.Name }}-secrets
               key: MYSQL_ROOT_PASSWORD
         - name: MYSQL_USER
           valueFrom:
             secretKeyRef:
-              name: mysql-secrets
+              name: {{ .Chart.Name }}-secrets
               key: MYSQL_USER
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secrets
+              name: {{ .Chart.Name }}-secrets
               key: MYSQL_PASSWORD
         - name: MYSQL_DATABASE
           value: app_db
@@ -63,7 +63,7 @@ spec:
       volumes:
       - name: config-map
         configMap:
-          name: mysql
+          name: {{ .Chart.Name }}
       tolerations:
       - key: {{.Values.tolerations.key}}
         operator: {{.Values.tolerations.operator}}

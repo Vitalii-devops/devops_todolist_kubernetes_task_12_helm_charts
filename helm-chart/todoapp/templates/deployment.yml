@@ -7,8 +7,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: {{ .Values.todoapp.deployment.maxSurge }}
-      maxUnavailable: {{ .Values.todoapp.deployment.maxUnavailable }}
+      maxSurge: {{ .Values.todoapp.roling.maxSurge }}
+      maxUnavailable: {{ .Values.todoapp.roling.maxUnavailable }}
   selector:
     matchLabels:
       app: {{ .Chart.Name }}
@@ -70,7 +70,7 @@ spec:
           claimName: {{ .Chart.Name }}-data
       - name: app-secrets-volume
         secret:
-          secretName: app-secret
+          secretName: {{ .Chart.Name }}-secret
       - name: app-config-volume
         configMap:
           name: {{ .Chart.Name }}-config
